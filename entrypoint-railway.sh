@@ -15,5 +15,8 @@ if [ -n "$RAILWAY_DOMAIN" ]; then
   su -s /bin/sh node -c "node /app/openclaw.mjs config set gateway.trustedProxies '[\"100.64.0.0/10\",\"10.0.0.0/8\",\"172.16.0.0/12\"]'" 2>/dev/null || true
 fi
 
+# Set default model to Anthropic Claude — only provider with a configured key.
+su -s /bin/sh node -c "node /app/openclaw.mjs config set agents.defaults.model 'anthropic/claude-sonnet-4-6'" 2>/dev/null || true
+
 # Drop to node user and start the gateway
 exec su -s /bin/sh node -c 'exec node /app/openclaw.mjs gateway --allow-unconfigured'
