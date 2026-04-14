@@ -252,7 +252,10 @@ RUN ln -sf /app/openclaw.mjs /usr/local/bin/openclaw \
 
 ENV NODE_ENV=production
 
-# Railway entrypoint: fix volume permissions at startup then drop to node user.
+# Railway entrypoint and bundled config.
+# Config is stored as .bundled so the gateway doesn't find and overwrite it.
+# The entrypoint copies it to the volume at /data/.openclaw/openclaw.json on boot.
+COPY openclaw.json5 /app/openclaw.json5.bundled
 COPY entrypoint-railway.sh /app/entrypoint-railway.sh
 RUN chmod +x /app/entrypoint-railway.sh
 
