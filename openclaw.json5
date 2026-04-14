@@ -17,8 +17,7 @@
         "fallbacks": []
       },
       "embeddedHarness": {
-        "runtime": "auto",
-        "fallback": "none"
+        "runtime": "pi"
       }
     }
   },
