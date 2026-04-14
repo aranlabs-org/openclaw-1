@@ -1,0 +1,22 @@
+{
+  // OpenClaw configuration for Railway + Telegram deployment
+  // Secrets are loaded from environment variables — never hardcode them here.
+
+  gateway: {
+    port: 8080,
+    bind: "lan",
+    auth: {
+      mode: "token",
+      // Token read from OPENCLAW_GATEWAY_TOKEN env var
+    },
+  },
+
+  channels: {
+    telegram: {
+      enabled: true,
+      // Token read from TELEGRAM_BOT_TOKEN env var
+      dmPolicy: "pairing",
+      groups: { "*": { requireMention: true } },
+    },
+  },
+}
