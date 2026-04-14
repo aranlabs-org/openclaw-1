@@ -7,17 +7,24 @@
     bind: "lan",
     auth: {
       mode: "token",
-      // Token read from OPENCLAW_GATEWAY_TOKEN env var
     },
+    trustedProxies: ["100.64.0.0/10", "10.0.0.0/8", "172.16.0.0/12"],
     controlUi: {
       allowedOrigins: ["https://openclaw-production-81bb.up.railway.app"],
+    },
+  },
+
+  agents: {
+    defaults: {
+      model: {
+        primary: "anthropic/claude-sonnet-4-6",
+      },
     },
   },
 
   channels: {
     telegram: {
       enabled: true,
-      // Token read from TELEGRAM_BOT_TOKEN env var
       dmPolicy: "pairing",
       groups: { "*": { requireMention: true } },
     },
