@@ -13,7 +13,12 @@
   "agents": {
     "defaults": {
       "model": {
-        "primary": "anthropic/claude-sonnet-4-6"
+        "primary": "anthropic/claude-sonnet-4-6",
+        "fallbacks": []
+      },
+      "embeddedHarness": {
+        "runtime": "auto",
+        "fallback": "none"
       }
     }
   },
