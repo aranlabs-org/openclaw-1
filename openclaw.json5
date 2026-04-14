@@ -1,32 +1,31 @@
 {
-  // OpenClaw configuration for Railway + Telegram deployment
-  // Secrets are loaded from environment variables — never hardcode them here.
-
-  gateway: {
-    port: 8080,
-    bind: "lan",
-    auth: {
-      mode: "token",
+  "gateway": {
+    "port": 8080,
+    "bind": "lan",
+    "auth": {
+      "mode": "token"
     },
-    trustedProxies: ["100.64.0.0/10", "10.0.0.0/8", "172.16.0.0/12"],
-    controlUi: {
-      allowedOrigins: ["https://openclaw-production-81bb.up.railway.app"],
-    },
+    "trustedProxies": ["100.64.0.0/10", "10.0.0.0/8", "172.16.0.0/12"],
+    "controlUi": {
+      "allowedOrigins": ["https://openclaw-production-81bb.up.railway.app"]
+    }
   },
-
-  agents: {
-    defaults: {
-      model: {
-        primary: "anthropic/claude-sonnet-4-6",
-      },
-    },
+  "agents": {
+    "defaults": {
+      "model": {
+        "primary": "anthropic/claude-sonnet-4-6"
+      }
+    }
   },
-
-  channels: {
-    telegram: {
-      enabled: true,
-      dmPolicy: "pairing",
-      groups: { "*": { requireMention: true } },
-    },
-  },
+  "channels": {
+    "telegram": {
+      "enabled": true,
+      "dmPolicy": "pairing",
+      "groups": {
+        "*": {
+          "requireMention": true
+        }
+      }
+    }
+  }
 }
