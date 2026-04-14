@@ -11,6 +11,8 @@ chown -R node:node /data
 RAILWAY_DOMAIN="${RAILWAY_PUBLIC_DOMAIN:-}"
 if [ -n "$RAILWAY_DOMAIN" ]; then
   su -s /bin/sh node -c "node /app/openclaw.mjs config set gateway.controlUi.allowedOrigins '[\"https://$RAILWAY_DOMAIN\",\"http://localhost:18789\",\"http://127.0.0.1:18789\"]'" 2>/dev/null || true
+  # Trust Railway's internal proxy so Control UI connections are treated as local.
+  su -s /bin/sh node -c "node /app/openclaw.mjs config set gateway.trustedProxies '[\"100.64.0.0/10\",\"10.0.0.0/8\",\"172.16.0.0/12\"]'" 2>/dev/null || true
 fi
 
 # Drop to node user and start the gateway
