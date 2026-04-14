@@ -9,6 +9,9 @@
       mode: "token",
       // Token read from OPENCLAW_GATEWAY_TOKEN env var
     },
+    controlUi: {
+      allowedOrigins: ["https://openclaw-production-81bb.up.railway.app"],
+    },
   },
 
   channels: {
