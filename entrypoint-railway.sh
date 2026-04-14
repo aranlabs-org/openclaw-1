@@ -6,5 +6,12 @@
 mkdir -p /data/.openclaw /data/workspace
 chown -R node:node /data
 
+# Pre-seed allowed origins for Control UI before gateway starts.
+# The gateway overwrites the config file on boot, so we patch it after seeding.
+RAILWAY_DOMAIN="${RAILWAY_PUBLIC_DOMAIN:-}"
+if [ -n "$RAILWAY_DOMAIN" ]; then
+  su -s /bin/sh node -c "node /app/openclaw.mjs config set gateway.controlUi.allowedOrigins '[\"https://$RAILWAY_DOMAIN\",\"http://localhost:18789\",\"http://127.0.0.1:18789\"]'" 2>/dev/null || true
+fi
+
 # Drop to node user and start the gateway
 exec su -s /bin/sh node -c 'exec node /app/openclaw.mjs gateway --allow-unconfigured'
